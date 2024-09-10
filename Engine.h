@@ -46,6 +46,11 @@ public:
 
 	void LoadLevel(const char* MapName);
 
+	const std::vector<class AActor*>& GetActors()
+	{
+		return Actors;
+	}
+
 };
 
 #define GEngine			Engine::GetInstance()

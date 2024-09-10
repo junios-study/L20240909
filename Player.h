@@ -6,6 +6,7 @@ public:
 	APlayer()
 	{
 		Depth = EDepth::Actor;
+		CollisionType = ECollisionType::Overlap;
 	}
 	virtual ~APlayer()
 	{
