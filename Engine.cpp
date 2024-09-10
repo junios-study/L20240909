@@ -11,6 +11,7 @@
 #include "Wall.h"
 #include "Floor.h"
 #include "Goal.h"
+#include "GameMode.h"
 
 #include <algorithm>
 
@@ -48,8 +49,17 @@ void Engine::Render()
 
 }
 
+void Engine::BeginPlay()
+{
+	for (const auto& Selected : Actors)
+	{
+		Selected->BeginPlay();
+	}
+}
+
 void Engine::Run()
 {
+	BeginPlay();
 	while (bIsRunning)
 	{
 		Input();
@@ -57,6 +67,12 @@ void Engine::Run()
 		Tick();
 
 		Render();
+
+		if (bWillStop)
+		{
+			bIsRunning = true;
+			break;
+		}
 	}
 }
 
@@ -67,6 +83,9 @@ void Engine::SpawnActor(AActor* SpawnedActor)
 
 void Engine::LoadLevel(const char* MapName)
 {
+	GEngine->SpawnActor(new AGameMode());
+
+
 	FILE* MapFile = fopen(MapName, "r");
 
 	char Line[100] = { 0, };

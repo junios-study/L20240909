@@ -16,6 +16,10 @@ void AActor::Render()
 	printf("%c", GetStaticMesh());
 }
 
+void AActor::BeginPlay()
+{
+}
+
 bool AActor::PredictCollision(int NewX, int NewY)
 {
 	for (auto& SelectedActor : GEngine->GetActors())
