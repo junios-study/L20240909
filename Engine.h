@@ -25,12 +25,7 @@ public:
 	}
 
 
-
-
-	virtual ~Engine()
-	{
-
-	}
+	virtual ~Engine();
 
 protected:
 	void Input();
@@ -49,7 +44,7 @@ public:
 
 	void SpawnActor(AActor* SpawnedActor);
 
-	void LoadLevel(char Map[10][10]);
+	void LoadLevel(const char* MapName);
 
 };
 
