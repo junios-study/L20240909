@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "SDL.h"
 
 class AActor;
 
@@ -7,14 +8,15 @@ class AActor;
 class Engine
 {
 private:
-	Engine()
-	{
-		KeyCode = 0;
-		bIsRunning = true;
-		bWillStop = false;
-	}
+	Engine();
+
+
+
 
 public:
+	void Init();
+	void Term();
+
 	static Engine* GetInstance()
 	{
 		if (!Instance)
@@ -59,6 +61,11 @@ public:
 	{
 		bWillStop = true;
 	}
+
+	struct SDL_Window* MyWindow;
+	struct SDL_Renderer* MyRenderer;
+	SDL_Event MyEvent;
+
 
 };
 

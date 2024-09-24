@@ -7,6 +7,8 @@ public:
 	{
 		Depth = EDepth::Actor;
 		CollisionType = ECollisionType::Overlap;
+
+		Color = { 0, 255, 0, 0 };
 	}
 	virtual ~APlayer()
 	{
