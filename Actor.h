@@ -89,6 +89,9 @@ protected:
 
 	int SizeX;
 	int SizeY;
+
+	struct SDL_Surface* Surface;
+	struct SDL_Texture* Texture;
 };
 
 
