@@ -66,6 +66,9 @@ public:
 	struct SDL_Renderer* MyRenderer;
 	SDL_Event MyEvent;
 
+	Uint64 DeltaSeconds;
+
+	inline const Uint64 GetWorldDeltaSeconds() { return DeltaSeconds; }
 
 };
 

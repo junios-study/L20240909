@@ -1,6 +1,7 @@
 #include "Monster.h"
 #include <stdlib.h>
 #include <time.h>
+#include "Engine.h"
 
 AMonster::AMonster()
 {
@@ -9,10 +10,22 @@ AMonster::AMonster()
 	CollisionType = ECollisionType::Overlap;
 
 	Color = { 255, 0, 0, 0 };
+
+	ElapsedTime = 0;
+	ProcessTime = 500;
 }
 
 void AMonster::Tick(int KeyCode)
 {
+	ElapsedTime += GEngine->GetWorldDeltaSeconds();
+	if (ElapsedTime < ProcessTime)
+	{
+		return;
+	}
+
+	ElapsedTime = 0;
+
+
 	int Diredction = rand() % 4;
 
 	if (Diredction == 0)
