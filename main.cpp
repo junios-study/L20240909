@@ -14,6 +14,9 @@ int SDL_main(int agrc, char* agrv[])
 
 	bool bIsRunning = true;
 	SDL_Event MyEvent;
+	int PlayerX = 400;
+	int PlayerY = 400;
+
 	while (bIsRunning)
 	{
 		SDL_PollEvent(&MyEvent);
@@ -21,6 +24,14 @@ int SDL_main(int agrc, char* agrv[])
 		{
 		case SDL_QUIT:
 			bIsRunning = false;
+			break;
+		case SDL_KEYDOWN:
+			switch (MyEvent.key.keysym.sym)
+			{
+			case SDLK_DOWN:
+				PlayerY++;
+				break;
+			}
 			break;
 		}
 
@@ -34,17 +45,18 @@ int SDL_main(int agrc, char* agrv[])
 		SDL_RenderFillRect(MyRenderer, &MyRect);
 
 		double PI = 3.1415926;
-	
-		for (int i = 0; i <= 360; i += 10)
+
+		for (int Radius = 1; Radius <= 100; ++Radius)
 		{
-			int X1 = SDL_cos(i * PI / 180.0f) * 100;
-			int Y1 = SDL_sin(i * PI / 180.0f) * 100;
-			int X2 = SDL_cos( (i+10)  * PI / 180.0f) * 100;
-			int Y2 = SDL_sin( (i+10) * PI / 180.0f) * 100;
-			SDL_RenderDrawLine(MyRenderer, 400 + X1, 400 + Y1, 400 + X2, 400 + Y2);
+			for (int i = 0; i <= 360; i += 10)
+			{
+				int X1 = SDL_cos(i * PI / 180.0f) * Radius;
+				int Y1 = SDL_sin(i * PI / 180.0f) * Radius;
+				int X2 = SDL_cos((i + 10) * PI / 180.0f) * Radius;
+				int Y2 = SDL_sin((i + 10) * PI / 180.0f) * Radius;
+				SDL_RenderDrawLine(MyRenderer, PlayerX + X1, PlayerY + Y1, PlayerX + X2, PlayerY + Y2);
+			}
 		}
-
-
 
 		SDL_RenderPresent(MyRenderer);
 	}
