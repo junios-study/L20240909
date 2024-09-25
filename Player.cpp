@@ -38,3 +38,22 @@ void APlayer::Tick(int KeyCode)
 		}
 	}
 }
+
+void APlayer::Render()
+{
+	//AActor::Render();
+	SDL_SetRenderDrawColor(GEngine->MyRenderer, Color.r, Color.g, Color.b, Color.a);
+	SDL_Rect PositionRect = { X * SizeX, Y * SizeY, SizeX, SizeY };
+	if (Texture == nullptr)
+	{
+		SDL_RenderFillRect(GEngine->MyRenderer, &PositionRect);
+	}
+	else
+	{
+		int Width = Surface->w;
+		int Height = Surface->h;
+
+		SDL_Rect SourceRect = { 0, 0, Width / 5, Height / 5 };
+		SDL_RenderCopy(GEngine->MyRenderer, Texture, &SourceRect, &PositionRect);
+	}
+}

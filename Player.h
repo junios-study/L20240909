@@ -22,5 +22,7 @@ public:
 	}
 
 	virtual void Tick(int KeyCode) override;
+
+	virtual void Render() override;
 };
 
