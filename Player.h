@@ -5,6 +5,14 @@
 class APlayer : public AActor
 {
 public:
+	enum class EPlayerDirection
+	{
+		Left = 0,
+		Right = 1,
+		Up = 2,
+		Down = 3,
+	};
+
 	APlayer()
 	{
 		Depth = EDepth::Actor;
@@ -15,6 +23,8 @@ public:
 		Surface = SDL_LoadBMP("Data/player.bmp");
 		SDL_SetColorKey(Surface, SDL_TRUE, SDL_MapRGB(Surface->format, 255, 0, 255));
 		Texture = SDL_CreateTextureFromSurface(GEngine->MyRenderer, Surface);
+
+		Direction = EPlayerDirection::Left;
 	}
 	virtual ~APlayer()
 	{
@@ -24,5 +34,8 @@ public:
 	virtual void Tick(int KeyCode) override;
 
 	virtual void Render() override;
+
+	EPlayerDirection Direction;
+
 };
 
